@@ -12,7 +12,13 @@
       "websiteUrl": "",
       "privacyUrl": "",
       "termsOfUseUrl": "",
-      "mpnId": ""
+      "mpnId": "",
+      "webApiPermissionRequests": [
+        {
+          "resource": "Microsoft Graph",
+          "scope": "User.ReadBasic.All"
+        }
+      ]
     }
   },
   "paths": {
