@@ -88,6 +88,7 @@ Dies erstellt die Frameworkbasis und die dazugehörige Verzeichnissstruktur.
 
 Dokumentationen
 - SPFX MS GraphClient https://www.npmjs.com/package/@microsoft/microsoft-graph-client
+- https://docs.microsoft.com/de-de/graph/api/resources (Graph api ressource)
 
 Nützliche links zum Verwalten der Applikation und ihrem deployment
 
