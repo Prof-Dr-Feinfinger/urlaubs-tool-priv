@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "urlaub-view-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/urlaubView/UrlaubViewWebPart.js",
+          "manifest": "./src/webparts/urlaubView/UrlaubViewWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "UrlaubViewWebPartStrings": "lib/webparts/urlaubView/loc/{locale}.js"
+  }
+}
