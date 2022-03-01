@@ -93,10 +93,13 @@ Nützliche links zum Verwalten der Applikation und ihrem deployment
 
 - https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps> (ActiveDirectory)
 - https://smsmedipoolag.sharepoint.com/sites/appcatalog/AppCatalog/Forms/AllItems.aspx (Hochladen/Deployment der Applikation)
-- <https://smsmedipoolag-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/webApiPermissionManagement> (Berechtigungen/Genehmigungen von der App)
+- https://smsmedipoolag-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/webApiPermissionManagement (Berechtigungen/Genehmigungen von der App)
 
  MS Listen
 - https://smsmedipoolag.sharepoint.com/sites/intranet/Lists/Urlaub/AllItems.aspx?env=WebViewList (UserTage)
+
+Berechtigungen im WebPart
+- https://docs.microsoft.com/de-de/sharepoint/dev/spfx/use-aad-tutorial#configure-the-api-permissions-requests
 
 
 
@@ -107,5 +110,6 @@ Intranet Links
 - https://smsmedipoolag.sharepoint.com/sites/Betriebsrat2 (Betriebsrat)
 - https://smsmedipoolag.sharepoint.com/sites/HR2 (HR)
 
-Graph Test-API
+MS-Graph-API
 - https://developer.microsoft.com/de-de/graph/graph-explorer
+- https://docs.microsoft.com/de-de/graph/api/resources/list?view=graph-rest-1.0
