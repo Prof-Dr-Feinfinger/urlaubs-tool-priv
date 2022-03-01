@@ -2,23 +2,23 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "urlaubs-tool-client-side-solution",
-    "id": "30902a77-2832-46ed-b3e1-f1009df3389b",
+    "id": "faa089fd-c236-4944-a021-78e2bcba143c",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": true,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "User.ReadBasic.All"
+      }
+    ],
     "developer": {
       "name": "",
       "websiteUrl": "",
       "privacyUrl": "",
       "termsOfUseUrl": "",
-      "mpnId": "",
-      "webApiPermissionRequests": [
-        {
-          "resource": "Microsoft Graph",
-          "scope": "User.ReadBasic.All"
-        }
-      ]
+      "mpnId": ""
     }
   },
   "paths": {
