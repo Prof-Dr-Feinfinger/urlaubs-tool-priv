@@ -70,6 +70,9 @@ Erstelle auf dem Linuxsubsystem einen Ordner für dein Projekt (die Projekt "Roo
     yo @microsoft/sharepoint
 ```
 
+Ressourcen : 
+- https://docs.microsoft.com/de-de/sharepoint/dev/spfx/extensions/get-started/build-a-hello-world-extension
+
 Dies erstellt die Frameworkbasis und die dazugehörige Verzeichnissstruktur.
 
 
@@ -103,3 +106,6 @@ Intranet Links
 - https://smsmedipoolag.sharepoint.com/sites/QM2 (QM Seite)
 - https://smsmedipoolag.sharepoint.com/sites/Betriebsrat2 (Betriebsrat)
 - https://smsmedipoolag.sharepoint.com/sites/HR2 (HR)
+
+Graph Test-API
+- https://developer.microsoft.com/de-de/graph/graph-explorer
