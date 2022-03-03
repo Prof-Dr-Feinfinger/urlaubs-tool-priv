@@ -1,6 +1,6 @@
 # Einrichtung der Entwicklungsumgebung
 
-Vorrausetzungen
+### Vorrausetzungen :
 - LinuxSubsystem Ubuntu  (wsl2)
 - Node version Manager (nvm)
 - Gulp
@@ -8,6 +8,7 @@ Vorrausetzungen
 
 
 ## Installation Linux Subsystem
+
 ```powershell
     wsl --install
     wsl --set-default-version 2
@@ -22,7 +23,9 @@ Ressourcen :
 - https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10#1-overview (Subsystem installation)
 - https://docs.microsoft.com/de-de/windows/wsl/install
 
+
 ## Installation Node Version Manager auf dem Subsystem
+---
 
 ```bash
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -52,6 +55,8 @@ Ressourcen :
 
 
 ## Installation globaler NPM packages im Subsystem
+---
+
 
 ```bash
     npm install gulp-cli yo @microsoft/generator-sharepoint --global
@@ -62,6 +67,7 @@ Resourcen :
 
 
 ## Erstellen eines SPFX-Projektes
+---
 
 Erstelle auf dem Linuxsubsystem einen Ordner für dein Projekt (die Projekt "Root").
 
@@ -70,38 +76,41 @@ Erstelle auf dem Linuxsubsystem einen Ordner für dein Projekt (die Projekt "Roo
     yo @microsoft/sharepoint
 ```
 
+Dies erstellt die Frameworkbasis und die dazugehörige Verzeichnissstruktur
+
 Ressourcen : 
 - https://docs.microsoft.com/de-de/sharepoint/dev/spfx/extensions/get-started/build-a-hello-world-extension
 
 Dies erstellt die Frameworkbasis und die dazugehörige Verzeichnissstruktur.
 
 
-# Das Starten der App
 
-- Öffne die Ubuntushell und öffne  über diese Shell VS-Code im Projektverzeichis
-- Dann im VS-Codeterminal `nvm use 14.15.0`
-- `npm install` wenn noch nicht gemacht
-- `gulp serve` zum starten der App
 
 
 
 
 # Entwicklung
 
+## Das Starten der App
+
+- Öffne die Ubuntushell und öffne  über diese Shell VS-Code im Projektverzeichis
+- Dann im VS-Codeterminal ****`nvm use 14.15.0`****
+- ****`npm install`**** wenn noch nicht gemacht
+- ****`gulp serve`**** zum starten der App
+
 ## Berechtigunen anfordern
 In der ./config/package-soluion.json den Array um die benötigte Resource erweitern.
 
 
 Beispiel : 
-In dem Beispiel wird die Resource zum lesen der User Angefordert.
 
-Eine Resou
 
+In dem Beispiel wird die Berechtigungsanfrage zum zum lesen der User von der Resource "MS-Graph" für den Zugriffsbereich "User.Read" angeforder.
 
 
 
 ```json
-    {
+{
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "urlaubs-tool-client-side-solution",
@@ -115,7 +124,7 @@ Eine Resou
         "resource": "Microsoft Graph",
         "scope": "User.Read"
       }
-    ],
+    ], 
     "developer": {
       "name": "",
       "websiteUrl": "",
@@ -130,12 +139,21 @@ Eine Resou
 }
 ```
 
+
+
 Danach muss das ganze per gulpe package-solution neu Gebuildet werden und im AppKatalog auf dem Sharepoint veröffentlicht werden.
 [APP-KATALOG-SHAREPOINT](https://smsmedipoolag.sharepoint.com/sites/appcatalog/AppCatalog/Forms/AllItems.aspx#InplviewHash8591f6ee-914f-492b-b184-5a945f5b03b1=WebPartID%3D%7B8591F6EE--914F--492B--B184--5A945F5B03B1%7D)
 
 
 Danach werden die Berechtigungen angefragt die von einem Administrator "Genehmigt werden müsssen"
 [WEP-API-PERMISSIONS](https://smsmedipoolag-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/webApiPermissionManagement)
+
+Quellen :
+- https://docs.microsoft.com/de-de/sharepoint/dev/spfx/use-aad-tutorial#deploy-the-solution-and-grant-permissions
+
+
+------------------------------
+
 
 Dokumentationen
 - SPFX MS GraphClient https://www.npmjs.com/package/@microsoft/microsoft-graph-client
