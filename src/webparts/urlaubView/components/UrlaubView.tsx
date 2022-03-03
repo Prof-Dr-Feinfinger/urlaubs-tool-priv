@@ -4,6 +4,22 @@ import { IUrlaubViewProps } from './IUrlaubViewProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 
 const UrlaubView: React.FunctionComponent<IUrlaubViewProps> = (props) => {
+  props.context.msGraphClientFactory.getClient()
+    .then(
+      client => {
+        client
+          .api('users')
+          .version('v1.0')
+          .select('displayName, mail, userPrrincipleName')
+          .filter('')
+          .get((err, res) => {
+            if (err) console.log(err)
+
+            console.log(res)
+          })
+      }
+    )
+    .catch(e => console.log(e))
   return (
     <div className={styles.urlaubView} >
       <div className={styles.container}>

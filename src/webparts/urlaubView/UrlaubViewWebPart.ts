@@ -17,16 +17,21 @@ export interface IUrlaubViewWebPartProps {
 
 export default class UrlaubViewWebPart extends BaseClientSideWebPart<IUrlaubViewWebPartProps> {
 
+
   public render(): void {
     const element: React.ReactElement<IUrlaubViewProps> = React.createElement(
       UrlaubView,
       {
-        description: this.properties.description
+        description: this.properties.description,
+        context: this.context
       }
     );
 
     ReactDom.render(element, this.domElement);
   }
+
+
+
 
   protected onDispose(): void {
     ReactDom.unmountComponentAtNode(this.domElement);
