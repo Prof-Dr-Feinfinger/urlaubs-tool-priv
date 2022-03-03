@@ -84,7 +84,58 @@ Dies erstellt die Frameworkbasis und die dazugehörige Verzeichnissstruktur.
 - `gulp serve` zum starten der App
 
 
+
+
 # Entwicklung
+
+## Berechtigunen anfordern
+In der ./config/package-soluion.json den Array um die benötigte Resource erweitern.
+
+
+Beispiel : 
+In dem Beispiel wird die Resource zum lesen der User Angefordert.
+
+Eine Resou
+
+
+
+
+```json
+    {
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "urlaubs-tool-client-side-solution",
+    "id": "faa089fd-c236-4944-a021-78e2bcba143c",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "User.Read"
+      }
+    ],
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": ""
+    }
+  },
+  "paths": {
+    "zippedPackage": "solution/urlaubs-tool.sppkg"
+  }
+}
+```
+
+Danach muss das ganze per gulpe package-solution neu Gebuildet werden und im AppKatalog auf dem Sharepoint veröffentlicht werden.
+[APP-KATALOG-SHAREPOINT](https://smsmedipoolag.sharepoint.com/sites/appcatalog/AppCatalog/Forms/AllItems.aspx#InplviewHash8591f6ee-914f-492b-b184-5a945f5b03b1=WebPartID%3D%7B8591F6EE--914F--492B--B184--5A945F5B03B1%7D)
+
+
+Danach werden die Berechtigungen angefragt die von einem Administrator "Genehmigt werden müsssen"
+[WEP-API-PERMISSIONS](https://smsmedipoolag-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/webApiPermissionManagement)
 
 Dokumentationen
 - SPFX MS GraphClient https://www.npmjs.com/package/@microsoft/microsoft-graph-client
