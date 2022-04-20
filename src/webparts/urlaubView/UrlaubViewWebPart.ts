@@ -3,7 +3,8 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneDropdown
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
@@ -13,7 +14,11 @@ import { IUrlaubViewProps } from './components/IUrlaubViewProps';
 
 export interface IUrlaubViewWebPartProps {
   description: string;
+  dropdown: string;
 }
+
+
+
 
 export default class UrlaubViewWebPart extends BaseClientSideWebPart<IUrlaubViewWebPartProps> {
 
@@ -55,8 +60,16 @@ export default class UrlaubViewWebPart extends BaseClientSideWebPart<IUrlaubView
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
+                PropertyPaneTextField('role', {
                   label: strings.DescriptionFieldLabel
+                }),
+                PropertyPaneDropdown('dropdown', {
+                  label: 'Role',
+                  options: [
+                    { key: 'admin', text: 'Administrator' },
+                    { key: 'hr', text: 'Personalabteilung' },
+                    { key: 'user', text: 'Mitarbeiter' }
+                  ]
                 })
               ]
             }

@@ -21,7 +21,8 @@
     "description": { "default": "urlaub-view description" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "urlaub-view"
+      "description": "urlaub-view",
+      "listName": ""
     }
   }]
 }
