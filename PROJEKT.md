@@ -98,7 +98,7 @@ Dies erstellt die Frameworkbasis und die dazugehörige Verzeichnissstruktur.
 - ****`npm install`**** wenn noch nicht gemacht
 - ****`gulp serve`**** zum starten der App
 
-## Berechtigunen anfordern
+## API Berechtigungen anfordern
 In der ./config/package-soluion.json den Array um die benötigte Resource erweitern.
 
 
@@ -150,6 +150,8 @@ Danach werden die Berechtigungen angefragt die von einem Administrator "Genehmig
 
 Quellen :
 - https://docs.microsoft.com/de-de/sharepoint/dev/spfx/use-aad-tutorial#deploy-the-solution-and-grant-permissions
+- https://robertschouten.com/2019/06/19/user_impersonation-scope-issue-when-working-with-sharepoint-framework-api-permissions/
+- https://docs.microsoft.com/de-de/graph/permissions-reference#access-reviews-permissions
 
 
 ------------------------------
@@ -171,7 +173,8 @@ Nützliche links zum Verwalten der Applikation und ihrem deployment
 Berechtigungen im WebPart
 - https://docs.microsoft.com/de-de/sharepoint/dev/spfx/use-aad-tutorial#configure-the-api-permissions-requests
 
-
+ - https://docs.microsoft.com/de-de/azure/active-directory/fundamentals/custom-security-attributes-overview
+ - https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/CustomAttributesCatalog>
 
 Intranet Links
 
