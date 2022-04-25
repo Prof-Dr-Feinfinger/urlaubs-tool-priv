@@ -2,5 +2,6 @@ import { WebPartContext } from "@microsoft/sp-webpart-base";
 
 export interface IUrlaubViewProps {
   description: string;
-  context: WebPartContext
+  context: WebPartContext;
+  user_group: string;
 }

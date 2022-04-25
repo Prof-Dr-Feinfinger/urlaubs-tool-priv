@@ -15,6 +15,7 @@ import { IUrlaubViewProps } from './components/IUrlaubViewProps';
 export interface IUrlaubViewWebPartProps {
   description: string;
   dropdown: string;
+  user_group: string;
 }
 
 
@@ -31,7 +32,9 @@ export default class UrlaubViewWebPart extends BaseClientSideWebPart<IUrlaubView
       UrlaubView,
       {
         description: this.properties.description,
-        context: this.context
+        user_group: this.properties.dropdown,
+        context: this.context,
+
       }
     );
 
@@ -64,11 +67,11 @@ export default class UrlaubViewWebPart extends BaseClientSideWebPart<IUrlaubView
                   label: strings.DescriptionFieldLabel
                 }),
                 PropertyPaneDropdown('dropdown', {
-                  label: 'Role',
+                  label: 'Benutzergruppe',
                   options: [
-                    { key: 'admin', text: 'Administrator' },
-                    { key: 'hr', text: 'Personalabteilung' },
-                    { key: 'user', text: 'Mitarbeiter' }
+                    { key: 'admins', text: 'Administrator' },
+                    { key: 'human_resources', text: 'Personalabteilung' },
+                    { key: 'employes', text: 'Mitarbeiter' }
                   ]
                 })
               ]
