@@ -11,7 +11,9 @@
       ]
     }
   },
-  "externals": {},
+  "externals": {
+    "@microsoft/sp-lodash-subset": "node_modules/@microsoft/sp-lodash-subset/dist/sp-lodash-subset.js"
+  },
   "localizedResources": {
     "UrlaubViewWebPartStrings": "lib/webparts/urlaubView/loc/{locale}.js"
   }

@@ -1,3 +1,5 @@
-export interface IHumanResourceViewProps {
+import { MSGraphClient } from "@microsoft/sp-http";
 
+export interface IHumanResourceViewProps {
+    client: any;
 }
