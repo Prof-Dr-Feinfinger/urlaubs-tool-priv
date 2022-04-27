@@ -11,7 +11,6 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import * as strings from 'UrlaubViewWebPartStrings';
 import UrlaubView from './components/UrlaubView';
 import { IUrlaubViewProps } from './components/IUrlaubViewProps';
-
 export interface IUrlaubViewWebPartProps {
   description: string;
   dropdown: string;
@@ -28,13 +27,16 @@ export default class UrlaubViewWebPart extends BaseClientSideWebPart<IUrlaubView
 
 
   public render(): void {
+
+
+
     const element: React.ReactElement<IUrlaubViewProps> = React.createElement(
       UrlaubView,
       {
         description: this.properties.description,
         user_group: this.properties.dropdown,
         context: this.context,
-
+        getClient: this.context.msGraphClientFactory.getClient
       }
     );
 

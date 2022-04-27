@@ -1,9 +1,10 @@
 import * as React from "react";
 import { IAdminViewProps } from "./IAdminViewProps";
-import { DatePicker, Checkbox, PrimaryButton, ITextFieldStyles, DetailsList, DetailsListLayoutMode, Selection, Persona, PersonaSize, Text } from 'office-ui-fabric-react'
-import { useGetUserDaysList } from '../hooks/useMsClient.js'
+import { DatePicker, Checkbox, PrimaryButton, ITextFieldStyles, DetailsList, DetailsListLayoutMode, Selection, Text } from 'office-ui-fabric-react'
 import * as strings from "UrlaubViewWebPartStrings";
-
+import CalculateRemainingHolidays from '../CalculateRemainingHolidays'
+import Persona from './../Shared/Persona/Persona'
+import { useGetMe } from '../../hooks/useMsClient.js'
 const columns = [
     { key: 'column1', name: 'Name', fieldName: 'name', minWidth: 100, maxWidth: 200, isResizable: true },
     { key: 'column2', name: 'Value', fieldName: 'value', minWidth: 100, maxWidth: 200, isResizable: true },
@@ -31,32 +32,20 @@ export interface IDetailsListCompactExampleState {
     selectionDetails: string;
 }
 
-const UserPersona = () => {
-    const [renderDetails, updateRenderDetails] = React.useState(true);
-    const onChange = (ev: unknown, checked: boolean | undefined) => {
-        updateRenderDetails(!!checked);
-    };
 
-    return (
-        <Persona
-            showUnknownPersonaCoin={true}
-            text="Kat Larrson"
-            secondaryText="Designer"
-            tertiaryText="Unverified sender"
-            size={PersonaSize.size72}
-            imageUrl={"https://static2.sharepointonline.com/files/fabric/office-ui-fabric-react-assets/persona-male.png"}
-            imageAlt="Kat Larrson, status unknown"
-        />
-    )
-}
-
-
-
+const URLAUBS_ANSPRUCH = 30;
+const GENOMENER_URLAUB = 10;
 
 const AdminView: React.FunctionComponent<IAdminViewProps> = (props) => {
     const [from, setFrom] = React.useState<Date | undefined>(new Date());
     const [to, setTo] = React.useState<Date | undefined>(new Date());
     const [isHalfDay, setIsHalfDay] = React.useState<boolean>(false)
+    const [{ error, data, loading }, getMe] = useGetMe()
+
+    React.useEffect(() => {
+        getMe(props.client)
+    }, [])
+
 
     const getSelectionDetails = () => {
         const selectionCount = selection.getSelectedCount();
@@ -77,26 +66,28 @@ const AdminView: React.FunctionComponent<IAdminViewProps> = (props) => {
     }))
 
 
-
-
-
     function onSubmit() {
         validate({ from, to, setIsHalfDay })
     }
     console.log(selection)
+    console.log(from.toDateString())
+    console.log({ error, data, loading })
     return (
         <>
-            <UserPersona />
-            <Text >{`Urlaubsanspruch (in Tagen): ${10}`} </Text>
-            <Text >{`Anzahl genommer Urlaubstage : ${10}`} </Text>
-            <Text >{`Anzahl der zu Beantragenden Tage des beantragten Urlaubs : ${10}`} </Text>
+            <Persona client={props.client} />
+            <Text >{`Urlaubsanspruch (in Tagen): ${URLAUBS_ANSPRUCH}`} </Text>
+
+            <CalculateRemainingHolidays totalHolidays={URLAUBS_ANSPRUCH} takenHolidays={GENOMENER_URLAUB} label={"Rest Urlaub"} />
+            <Text >{`Anzahl der zu Beantragenden Tage des beantragten Urlaubs : ${0}`} </Text>
             <br />
+
+
 
             <DatePicker isRequired value={from} onSelectDate={setFrom as (date: Date | null | undefined) => void} label="Von" />
-            <DatePicker isRequired value={to} onSelectDate={setTo as (date: Date | null | undefined) => void} label="Bis" />
+            <DatePicker minDate={new Date(from.toDateString())} isRequired value={to} onSelectDate={setTo as (date: Date | null | undefined) => void} label="Bis" />
 
             <br />
-            <Checkbox checked={isHalfDay} onChange={() => setIsHalfDay((prev) => !prev)} label="Halber Tag" />
+            {(from.getDate() === to.getDate()) && <Checkbox checked={isHalfDay} onChange={() => setIsHalfDay((prev) => !prev)} label="Halber Tag" />}
             <br />
 
             <PrimaryButton text="Absenden" />
@@ -108,6 +99,7 @@ const AdminView: React.FunctionComponent<IAdminViewProps> = (props) => {
                 layoutMode={DetailsListLayoutMode.justified}
                 selection={selection}
                 selectionPreservedOnEmptyClick={true}
+
                 ariaLabelForSelectionColumn="Toggle selection"
                 ariaLabelForSelectAllCheckbox="Toggle selection for all items"
                 checkButtonAriaLabel="select row"
