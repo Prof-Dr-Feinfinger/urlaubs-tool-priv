@@ -15,11 +15,7 @@ const ME_ID = '';
 const UrlaubView: React.FunctionComponent<IUrlaubViewProps> = (props) => {
   const [client, setClient] = React.useState(undefined);
   const [error, setError] = React.useState(null);
-  React.useEffect(() => {
-    props.context.msGraphClientFactory.getClient()
-      .then(c => setClient(c))
-      .catch(e => setError(() => e))
-  })
+
 
   if (error !== null && client !== undefined) return (<div>
     GET CLIENT ERROR

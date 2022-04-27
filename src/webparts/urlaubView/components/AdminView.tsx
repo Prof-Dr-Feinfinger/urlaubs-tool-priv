@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IAdminViewProps } from "./IAdminViewProps";
-import { DatePicker, Checkbox, PrimaryButton, ITextFieldStyles, DetailsList, DetailsListLayoutMode, Selection, IPersonaSharedProps, Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react'
+import { DatePicker, Checkbox, PrimaryButton, ITextFieldStyles, DetailsList, DetailsListLayoutMode, Selection, Persona, PersonaSize, Text } from 'office-ui-fabric-react'
 import { useGetUserDaysList } from '../hooks/useMsClient.js'
 import * as strings from "UrlaubViewWebPartStrings";
 
@@ -12,7 +12,7 @@ const columns = [
 const textFieldStyles: Partial<ITextFieldStyles> = { root: { maxWidth: '300px' } };
 
 
-const items = []
+const items = [{ key: 'column1', name: 'test', value: "Hallo" }, { key: 'column2', name: 'test2', value: "Hallo" }]
 
 
 function validate({ from, to, setIsHalfDay }) {
@@ -20,9 +20,16 @@ function validate({ from, to, setIsHalfDay }) {
 }
 
 
+export interface IDetailsListCompactExampleItem {
+    key: number;
+    name: string;
+    value: number;
+}
 
-
-
+export interface IDetailsListCompactExampleState {
+    items: IDetailsListCompactExampleItem[];
+    selectionDetails: string;
+}
 
 const UserPersona = () => {
     const [renderDetails, updateRenderDetails] = React.useState(true);
@@ -51,17 +58,38 @@ const AdminView: React.FunctionComponent<IAdminViewProps> = (props) => {
     const [to, setTo] = React.useState<Date | undefined>(new Date());
     const [isHalfDay, setIsHalfDay] = React.useState<boolean>(false)
 
+    const getSelectionDetails = () => {
+        const selectionCount = selection.getSelectedCount();
+
+        switch (selectionCount) {
+            case 0:
+                return 'No items selected';
+            case 1:
+                return '1 item selected: ' + (selection.getSelection()[0] as IDetailsListCompactExampleItem).name;
+            default:
+                return `${selectionCount} items selected`;
+        }
+    }
+
+
+    const [selection, setSelected] = React.useState<Selection>(new Selection({
+        onSelectionChanged: () => setSelected({ selectionDetails: getSelectionDetails() })
+    }))
+
+
+
 
 
     function onSubmit() {
         validate({ from, to, setIsHalfDay })
     }
-
-
-
+    console.log(selection)
     return (
         <>
             <UserPersona />
+            <Text >{`Urlaubsanspruch (in Tagen): ${10}`} </Text>
+            <Text >{`Anzahl genommer Urlaubstage : ${10}`} </Text>
+            <Text >{`Anzahl der zu Beantragenden Tage des beantragten Urlaubs : ${10}`} </Text>
             <br />
 
             <DatePicker isRequired value={from} onSelectDate={setFrom as (date: Date | null | undefined) => void} label="Von" />
@@ -78,12 +106,13 @@ const AdminView: React.FunctionComponent<IAdminViewProps> = (props) => {
                 columns={columns}
                 setKey="set"
                 layoutMode={DetailsListLayoutMode.justified}
-                selection={new Selection}
+                selection={selection}
                 selectionPreservedOnEmptyClick={true}
                 ariaLabelForSelectionColumn="Toggle selection"
                 ariaLabelForSelectAllCheckbox="Toggle selection for all items"
                 checkButtonAriaLabel="select row"
-                onItemInvoked={() => console.log("Item wurde ausgewählt")}
+                onItemInvoked={(e) => console.log(e)}
+
             />
             <PrimaryButton text="Löschen" />
         </>
