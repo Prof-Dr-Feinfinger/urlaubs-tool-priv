@@ -11,17 +11,34 @@ const ME_ID = '';
 
 const UrlaubView: React.FunctionComponent<IUrlaubViewProps> = (props) => {
 
+
+  React.useEffect(() => {
+    props.context.msGraphClientFactory.getClient()
+      .then((client) => {
+        client
+          .api("/users")
+          .version("v1.0")
+          .select("id, displayName,mail,userPrincipalName")
+          .filter('')
+          .get((err, res) => {
+            if (err) console.log(err)
+            else console.log(res)
+          })
+      })
+      .catch(e => console.log(e))
+  }, [])
+
   if (props.user_group === 'admins') return (
-    <AdminView client={props.getClient()} />
+    <AdminView client={props.context.msGraphClientFactory.getClient()} />
   )
 
-  if (props.user_group === 'employes') return (
-    <EmployeView getClient={props.getClient} />
-  )
+  // if (props.user_group === 'employes') return (
+  //   <EmployeView getClient={props.getClient} />
+  // )
 
-  if (props.user_group === 'human_resources') return (
-    <HumanResourceView getClient={props.getClient} />
-  )
+  //   if (props.user_group === 'human_resources') return (
+  //     <HumanResourceView getClient={props.getClient} />
+  //   )
 }
 
 export default UrlaubView

@@ -36,7 +36,6 @@ export default class UrlaubViewWebPart extends BaseClientSideWebPart<IUrlaubView
         description: this.properties.description,
         user_group: this.properties.dropdown,
         context: this.context,
-        getClient: this.context.msGraphClientFactory.getClient
       }
     );
 

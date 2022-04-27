@@ -12,9 +12,9 @@ const useGetMe = (): [{ error, data, loading }, Function] => {
         client
             .then((client) => {
                 client
-                    .api("/users")
-                    .version("v1.0")
-                    .select("id, displayName,mail,userPrincipalName")
+                    .api("/me")
+                    .version("beta")
+                    .select("id, displayName, jobTitle, customSecurityAttributes")
                     .filter('')
                     .get((err, res) => {
                         if (err) setError(err)

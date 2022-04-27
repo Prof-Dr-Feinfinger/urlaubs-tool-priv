@@ -40,11 +40,7 @@ const AdminView: React.FunctionComponent<IAdminViewProps> = (props) => {
     const [from, setFrom] = React.useState<Date | undefined>(new Date());
     const [to, setTo] = React.useState<Date | undefined>(new Date());
     const [isHalfDay, setIsHalfDay] = React.useState<boolean>(false)
-    const [{ error, data, loading }, getMe] = useGetMe()
 
-    React.useEffect(() => {
-        getMe(props.client)
-    }, [])
 
 
     const getSelectionDetails = () => {
@@ -71,10 +67,9 @@ const AdminView: React.FunctionComponent<IAdminViewProps> = (props) => {
     }
     console.log(selection)
     console.log(from.toDateString())
-    console.log({ error, data, loading })
     return (
         <>
-            <Persona client={props.client} />
+            {props.client && <Persona client={props.client} />}
             <Text >{`Urlaubsanspruch (in Tagen): ${URLAUBS_ANSPRUCH}`} </Text>
 
             <CalculateRemainingHolidays totalHolidays={URLAUBS_ANSPRUCH} takenHolidays={GENOMENER_URLAUB} label={"Rest Urlaub"} />

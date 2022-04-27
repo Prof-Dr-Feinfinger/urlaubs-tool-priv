@@ -5,5 +5,4 @@ export interface IUrlaubViewProps {
   description: string;
   context: WebPartContext;
   user_group: string;
-  getClient: Function;
 }
