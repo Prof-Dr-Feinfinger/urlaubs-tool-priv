@@ -29,34 +29,33 @@ const useGetMe = (): [{ error, data, loading }, Function] => {
 }
 
 
-// const useGetUserDaysList = (client) => {
-//     const [error, setError] = useState(null);
-//     const [data, setData] = useState(null);
-//     const [loading, setLoading] = useState(true);
+const useGetUserDaysList = (): [{ error, data, loading }, Function] => {
+    const [error, setError] = React.useState(null);
+    const [data, setData] = React.useState(null);
+    const [loading, setLoading] = React.useState(false);
+    function GetUserDaysList(client: Promise<MSGraphClient>) {
+        setLoading(() => true)
+        client
+            .then((client) => {
+                client
+                    .api(`/sites/${INTRANET_OBJECT_ID}/lists/${URLAUBS_TAGE_LIST_ID}/items`)
+                    .version("beta")
+                    .select("") //evtl anpassen
+                    .filter('')
+                    .get((err, res) => {
+                        if (err) setError(err)
+                        else setData(() => res)
+                        setLoading(() => false)
+                    })
+            })
+            .catch(e => { setError(() => e); setLoading(() => false) })
+    }
 
-//     function getUserDaysList(url, api, filter) {
-//         client.then(
-//             client => {
-//                 client
-//                     .api(`/sites/${INTRANET_OBJECT_ID}/lists/${URLAUBS_TAGE_LIST_ID}/items`)
-//                     .version('v1.0')
-//                     .get((err, res) => {
-//                         if (err) console.log(err);
-//                         else console.log(res)
-//                         client
-//                     });
-//             }
-//         )
-//             .catch(e => console.log(e));
-//     }
-
-
-
-
-//     return [{ error, data, loading }, getUserDaysList];
-// }
+    return [{ error, data, loading }, GetUserDaysList];
+}
 
 
 
 
-export { useGetMe };
+
+export { useGetMe, useGetUserDaysList };
