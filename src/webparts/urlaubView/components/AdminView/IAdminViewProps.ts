@@ -1,4 +1,4 @@
 import { MSGraphClient } from "@microsoft/sp-http";
 export interface IAdminViewProps {
-    client: any;
+    client: Promise<MSGraphClient>;
 }
