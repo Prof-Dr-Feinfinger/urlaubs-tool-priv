@@ -15,10 +15,7 @@ const Persona: React.FunctionComponent<IPersonaProps> = props => {
         getMe(props.client)
     }, [])
 
-
-    console.log({ error, loading, data })
-
-    if (!!error) return <div>{error}</div>
+    //if (!!error) return <div>{error}</div>
 
     if (loading) return <div>Loading</div>
 
@@ -27,7 +24,7 @@ const Persona: React.FunctionComponent<IPersonaProps> = props => {
             showUnknownPersonaCoin={true}
             text={data ? data.displayName : ""}
             secondaryText={data && data.jobTitle ? data.jobTitle : "Anwendungsentwickler"}
-            tertiaryText="Unverified sender"
+            tertiaryText={data && `Jahresurlaub : ${data.customSecurityAttributes.UrlaubsTool.JahresUrlaub} | Genommener Urlaub : ${10}`}
             size={OPersonaSize.size72}
             imageUrl={"https://static2.sharepointonline.com/files/fabric/office-ui-fabric-react-assets/persona-male.png"}
             imageAlt="Kat Larrson, status unknown"

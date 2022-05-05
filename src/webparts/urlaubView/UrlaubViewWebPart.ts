@@ -70,7 +70,7 @@ export default class UrlaubViewWebPart extends BaseClientSideWebPart<IUrlaubView
                 PropertyPaneDropdown('dropdown', {
                   label: 'Benutzergruppe',
                   options: [
-                    { key: 'admins', text: 'Administrator' },
+                    { key: 'leaders', text: 'Leitung' },
                     { key: 'human_resources', text: 'Personalabteilung' },
                     { key: 'employes', text: 'Mitarbeiter' }
                   ]

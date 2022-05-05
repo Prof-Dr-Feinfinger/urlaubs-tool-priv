@@ -28,17 +28,23 @@ const UrlaubView: React.FunctionComponent<IUrlaubViewProps> = (props) => {
       .catch(e => console.log(e))
   }, [])
 
-  if (props.user_group === 'admins') return (
+
+
+
+  if (props.user_group === "") return <div>No Usergroup Selected</div>
+
+
+  if (props.user_group === 'leaders') return (
     <AdminView client={props.context.msGraphClientFactory.getClient()} />
   )
 
-  // if (props.user_group === 'employes') return (
-  //   <EmployeView getClient={props.getClient} />
-  // )
+  if (props.user_group === 'employes') return (
+    <EmployeView client={props.context.msGraphClientFactory.getClient()} />
+  )
 
-  //   if (props.user_group === 'human_resources') return (
-  //     <HumanResourceView getClient={props.getClient} />
-  //   )
+  if (props.user_group === 'human_resources') return (
+    <HumanResourceView client={props.context.msGraphClientFactory.getClient()} />
+  )
 }
 
 export default UrlaubView

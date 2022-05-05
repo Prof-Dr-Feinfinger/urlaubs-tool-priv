@@ -1,5 +1,6 @@
 import { MSGraphClient } from "@microsoft/sp-http";
 
-export interface IHolidayFormProps {
+
+export interface IHolidaysFormProps {
     client: Promise<MSGraphClient>;
 }
