@@ -3,15 +3,28 @@ import { some } from "lodash";
 
 const getAllDaysInInterval = (from, to) => {
     let days = []
+    if (!from) return [];
+    if (!to) return [];
     const start = new Date(from.getTime());
     const end = new Date(to.getTime());
-    for (const day: Date = from; day <= to; day.setDate(day.getDate() + 1)) {
+    for (const day: Date = start; day <= end; day.setDate(day.getDate() + 1)) {
         days.push(new Date(day.getTime()))
     }
-    return days
+    return [...days]
 }
 
+const one_day_plus = (date) => {
+    const tmp = new Date(date.getTime())
+    tmp.setDate(tmp.getDate() + 1);
+    return tmp
+}
 
+const getIntervall = (start, end, intervall) => {
+    if (start <= end) {
+        return getIntervall(one_day_plus(start), end, [...intervall, new Date(start.getTime())])
+    }
+    return [...intervall]
+}
 
 
 const filterSundaysAndSaturdays = (days) => days.filter(day => !(day.getDay() >= 6 || day.getDay() == 0))
@@ -54,7 +67,7 @@ const calculateTakenHolidays = (from: Date, to: Date, free_days: Array<Date>): N
     //     }
     // }
     const all_days = getAllDaysInInterval(start, end)
-    return customFilter(all_days, free_days).length
+    return customFilter(all_days, excluded_days).length
 }
 
 

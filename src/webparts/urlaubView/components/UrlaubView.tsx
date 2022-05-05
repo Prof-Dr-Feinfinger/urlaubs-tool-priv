@@ -31,7 +31,7 @@ const UrlaubView: React.FunctionComponent<IUrlaubViewProps> = (props) => {
 
 
 
-  if (props.user_group === "") return <div>No Usergroup Selected</div>
+  if (!props.user_group) return <div>No Usergroup Selected</div>
 
 
   if (props.user_group === 'leaders') return (
